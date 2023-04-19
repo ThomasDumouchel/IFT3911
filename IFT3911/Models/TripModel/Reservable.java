@@ -2,10 +2,11 @@ package Models.TripModel;
 
 import java.util.UUID;
 
-public abstract class Reservable<O extends ReserveOption> {
+public abstract class Reservable<O extends ReservationOption> {
 
-	String id;
-	ReservableState state;
+	private String id;
+	private ReservableState state;
+	private O reserveOption;
 
 	public Reservable() {
 		this.id = UUID.randomUUID().toString();
@@ -16,7 +17,9 @@ public abstract class Reservable<O extends ReserveOption> {
 		return state.isAvailable();
 	}
 
-	public abstract Boolean doesRespectOption(O option);
+	public Boolean doesRespectOption(O option){
+		return this.reserveOption == option;
+	}
 
 	public Reservable<O> book(){
 		return state.book();

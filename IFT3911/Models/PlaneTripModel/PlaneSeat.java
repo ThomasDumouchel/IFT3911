@@ -1,8 +1,24 @@
 package Models.PlaneTripModel;
-public class PlaneSeat<O extends PlaneSeatOption> {
+
+import Models.TripModel.Reservable;
+
+public class PlaneSeat extends Reservable<PlaneReservationOption> {
 
 	private Integer row;
 	private String col;
-	private O planeSeatOption;
+
+	public PlaneSeat(Integer row, String col) {
+		super();
+		this.row = row;
+		this.col = col;
+	}
+
+	public Integer getRow() {
+		return this.row;
+	}
+
+	public String getCol() {
+		return this.col;
+	}
 
 }

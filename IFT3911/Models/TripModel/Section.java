@@ -3,9 +3,9 @@ package Models.TripModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Section<O extends ReserveOption, R extends Reservable<O>, T extends Enum> {
+public abstract class Section<R extends Reservable<O>, O extends ReservationOption, T extends Enum<T>> {
 
-	private T sectionType;
+	private final T sectionType;
 	private Double fullPriceMultiplier;
 	private List<R> reservables;
 
@@ -23,11 +23,15 @@ public abstract class Section<O extends ReserveOption, R extends Reservable<O>, 
 		return this.fullPriceMultiplier;
 	}
 
+	public List<R> getReservables(){
+		return this.reservables;
+	}
+
 	/**
 	 * 
 	 * @param option
 	 */
-	public R Reserve(O option) {
+	public R reserve(O option) {
 		// TODO: handle the case where a reservable is available,
 		// but does not respect the option (should we reserve it anyway?)
 		for (R r : reservables) {

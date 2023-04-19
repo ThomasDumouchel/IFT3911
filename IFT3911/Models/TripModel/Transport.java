@@ -1,7 +1,7 @@
 package Models.TripModel;
 import java.util.*;
 
-public abstract class Transport<T extends Enum, O extends ReserveOption, R extends Reservable<O>, S extends Section<O, R, T>> {
+public abstract class Transport<S extends Section<R, O, T>, R extends Reservable<O>, O extends ReservationOption, T extends Enum<T>> {
 
 	private List<S> sections;
 
@@ -16,20 +16,6 @@ public abstract class Transport<T extends Enum, O extends ReserveOption, R exten
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * @param sectionType
-	 * @param option
-	 */
-	public R reserve(T sectionType, O option){
-        var section = this.GetSection(sectionType);
-		if (section == null){
-			return null;
-		}
-		else{
-			return section.Reserve(option);
-		} 
 	}
 
 }

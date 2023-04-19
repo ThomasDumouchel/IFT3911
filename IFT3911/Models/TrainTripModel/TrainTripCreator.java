@@ -1,5 +1,6 @@
 package Models.TrainTripModel;
 
+import Models.TripModel.Company;
 import Models.TripModel.Trip;
 import Models.TripModel.TripCreator;
 
@@ -7,18 +8,17 @@ public class TrainTripCreator extends TripCreator {
 
 	private TrainTripCreator instance;
 
-	public Trip createTrip() {
-		// TODO - implement TrainTripCreator.createTrip
-		throw new UnsupportedOperationException();
-	}
-
 	public TrainTripCreator getInstance() {
+		if (this.instance == null) {
+			this.instance = new TrainTripCreator();
+		}
 		return this.instance;
 	}
 
-	private TrainTripCreator TrainTripCreator() {
-		// TODO - implement TrainTripCreator.TrainTripCreator
-		throw new UnsupportedOperationException();
+	@Override
+	public Trip createTrip(Company company) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createTrip'");
 	}
 
 }

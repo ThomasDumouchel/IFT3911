@@ -1,3 +1,6 @@
 package Models.TrainTripModel;
-public class TrainSeat {
+
+import Models.TripModel.Reservable;
+
+public class TrainSeat extends Reservable<TrainReservationOption> {
 }

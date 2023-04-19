@@ -35,7 +35,7 @@ public interface ClientController {
 	 * @param option
 	 * @param client
 	 */
-	Reserved ReserveCruiseTrip(String cruiseId, String cruiseSection, CruiseReserveOption option, Client client);
+	Reserved ReserveCruiseTrip(String cruiseId, String cruiseSection, CruiseReservationOption option, Client client);
 
 	/**
 	 * 

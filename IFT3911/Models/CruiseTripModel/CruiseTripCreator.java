@@ -1,5 +1,6 @@
 package Models.CruiseTripModel;
 
+import Models.TripModel.Company;
 import Models.TripModel.Trip;
 import Models.TripModel.TripCreator;
 
@@ -7,18 +8,19 @@ public class CruiseTripCreator extends TripCreator {
 
 	private CruiseTripCreator instance;
 
-	public Trip createTrip() {
-		// TODO - implement CruiseTripCreator.createTrip
-		throw new UnsupportedOperationException();
-	}
-
 	public CruiseTripCreator getInstance() {
+		if (this.instance == null) {
+			this.instance = new CruiseTripCreator();
+		}
 		return this.instance;
 	}
 
-	private CruiseTripCreator CruiseTripCreator() {
-		// TODO - implement CruiseTripCreator.CruiseTripCreator
-		throw new UnsupportedOperationException();
+	@Override
+	public Trip createTrip(Company company) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'CreateTrip'");
 	}
+
+
 
 }

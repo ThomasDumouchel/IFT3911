@@ -2,7 +2,7 @@ package Models.PlaneTripModel;
 
 public enum PlaneSectionType {
 	ECONOMY,
-	ECONOMYPREMIUM, 
+	ECONOMY_PREMIUM, 
 	BUSINESS, 
 	FIRST;
 }

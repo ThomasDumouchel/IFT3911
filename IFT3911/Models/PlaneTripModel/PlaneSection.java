@@ -1,21 +1,21 @@
 package Models.PlaneTripModel;
 
-import Models.TripModel.Reservable;
 import Models.TripModel.Section;
 
-public abstract class PlaneSection<O extends PlaneSeatOption, R extends Reservable<O>, T extends PlaneSectionType> extends Section<O, R, T> {
+public abstract class PlaneSection extends Section<PlaneSeat, PlaneReservationOption, PlaneSectionType> {
 
-	public final PlaneSectionType planeSectionType;
-	private PlaneSectionLayoutType sectionLayout;
+	private final PlaneSectionLayoutType sectionLayout;
 
-	public PlaneSection(PlaneSectionType sectionType, Double fullPriceMultiplier, PlaneSectionLayoutType sectionLayout) {
+	public PlaneSection(
+		PlaneSectionType sectionType, 
+		Double fullPriceMultiplier, 
+		PlaneSectionLayoutType sectionLayout
+	) {
 		super(sectionType, fullPriceMultiplier);
-		
+		this.sectionLayout = sectionLayout;
 	}
 
 	public PlaneSectionLayoutType getSectionLayout() {
 		return this.sectionLayout;
 	}
-
-
 }

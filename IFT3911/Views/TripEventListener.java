@@ -1,6 +1,6 @@
 package Views;
 
-public interface EventListener {
+public interface TripEventListener {
 
 	/**
 	 * 

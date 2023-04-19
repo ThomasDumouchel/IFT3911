@@ -4,14 +4,14 @@ import Views.*;
 
 public class EventPublisher {
 
-	EventListener listeners;
+	TripEventListener listeners;
 
 	/**
 	 * 
 	 * @param eventType
 	 * @param listener
 	 */
-	public void subscribe(EventTypes eventType, EventListener listener) {
+	public void subscribe(EventTypes eventType, TripEventListener listener) {
 		// TODO - implement EventPublisher.subscribe
 		throw new UnsupportedOperationException();
 	}
@@ -21,7 +21,7 @@ public class EventPublisher {
 	 * @param eventType
 	 * @param listener
 	 */
-	public void unsubscribe(EventTypes eventType, EventListener listener) {
+	public void unsubscribe(EventTypes eventType, TripEventListener listener) {
 		// TODO - implement EventPublisher.unsubscribe
 		throw new UnsupportedOperationException();
 	}
