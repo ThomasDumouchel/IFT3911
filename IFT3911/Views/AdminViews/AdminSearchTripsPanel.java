@@ -53,6 +53,9 @@ public class AdminSearchTripsPanel extends JPanel {
 			this.context.changeCard("home");
 		});
 
+		searchButton.addActionListener(e -> {
+			// TODO: Search trips and go to results panel
+
 
 		// Set final layout
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
