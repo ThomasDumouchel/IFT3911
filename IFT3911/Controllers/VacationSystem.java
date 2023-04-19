@@ -21,14 +21,12 @@ public class VacationSystem implements AdminPlaneTripController {
 
 	@Override
 	public Airport CreateAirport(String name, String city) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'CreateAirport'");
+		return planeTripManager.createAirport(name, city);
 	}
 
 	@Override
 	public Airport UpdateAirport(String name, Airport updated_airport) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'UpdateAirport'");
+		return planeTripManager.UpdateAirport(name, updated_airport);
 	}
 
 	@Override

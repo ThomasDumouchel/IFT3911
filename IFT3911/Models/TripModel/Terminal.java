@@ -9,5 +9,13 @@ public abstract class Terminal {
 		this.city = city;
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+
 
 }

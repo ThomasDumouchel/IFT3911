@@ -20,11 +20,11 @@ public class TripDAO {
         ));
     }
 
-    public List<PlaneTrip> getTrips(TripType tripType) {
-        var res = new ArrayList<PlaneTrip>();
+    public List<Trip> getTrips(TripType tripType) {
+        var res = new ArrayList<Trip>();
         for (var trip : trips) {
             if (trip.getType() == tripType) {
-                res.add((PlaneTrip)ToAppModel(trip));
+                res.add(ToAppModel(trip));
             }
         }
         return res;
