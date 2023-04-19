@@ -1,5 +1,15 @@
 package Controllers;
 
+import java.util.List;
+
+import Models.PlaneTripModel.Airline;
+import Models.PlaneTripModel.Airport;
+import Models.PlaneTripModel.Plane;
+import Models.PlaneTripModel.PlaneSection;
+import Models.PlaneTripModel.PlaneSectionLayoutType;
+import Models.PlaneTripModel.PlaneSectionType;
+import Models.PlaneTripModel.PlaneTrip;
+
 public interface AdminPlaneTripController {
 
 	/**
@@ -46,7 +56,7 @@ public interface AdminPlaneTripController {
 	 * 
 	 * @param company
 	 */
-	PlaneTrip CreatePlaneTrip(Company company);
+	PlaneTrip CreatePlaneTrip(Airline company);
 
 	/**
 	 * 
@@ -67,7 +77,7 @@ public interface AdminPlaneTripController {
 	 * @param sectionType
 	 * @param layout
 	 */
-	PlaneSection CreatePlaneSection(Int rowCount, PlaneSectionType sectionType, PlaneSectionLayoutType layout);
+	PlaneSection CreatePlaneSection(Integer rowCount, PlaneSectionType sectionType, PlaneSectionLayoutType layout);
 
 	/**
 	 * 

@@ -1,4 +1,4 @@
-package Managerss;
+package Managers;
 
 public class TrainTripManager {
 

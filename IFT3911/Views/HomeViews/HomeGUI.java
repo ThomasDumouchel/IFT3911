@@ -2,27 +2,29 @@ package Views.HomeViews;
 
 import javax.swing.*;
 
+import Controllers.VacationSystem;
 import Views.AdminViews.AdminGUI;
-import Views.AdminViews.AdminHomePanel;
 
 import java.awt.*;
 
-public class HomeGUI {
+public class HomeGUI extends JFrame {
 
-    public static void main(String[] args) {
-        // create a new JFrame to hold two buttons
-        JFrame frame = new JFrame("Vacation system");
+    private VacationSystem vacationSystem;
+
+    public HomeGUI(VacationSystem vacationSystem) {
+        this.vacationSystem = vacationSystem;
+        setTitle("Vacation System");
 
         // Get the size of the screen
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
 
         // Set the location of the frame to the center of the screen
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x, y);
+        int x = (screenSize.width - getWidth()) / 2;
+        int y = (screenSize.height - getHeight()) / 2;
+        setLocation(x, y);
 
         // create a panel to hold all other components
         JPanel panel = new JPanel();
@@ -45,7 +47,7 @@ public class HomeGUI {
         });
 
         adminButton.addActionListener(e -> {
-            AdminGUI adminGui = new AdminGUI();
+            AdminGUI adminGui = new AdminGUI(vacationSystem);
             adminGui.setVisible(true);
         });
         
@@ -53,11 +55,16 @@ public class HomeGUI {
         panel.add(clientButton);
         panel.add(adminButton);
 
-
         // add panel to frame
-        frame.add(panel);
-        // set frame to be visible
-        frame.setVisible(true);
+        add(panel);
+
+        // Set the default close operation for the frame
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    public void run() {
+        // make frame visible
+        setVisible(true);
     }
 
 }

@@ -1,37 +1,22 @@
-package Managerss;
+package Managers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import DAOs.TripDAO;
+import DAOs.Company.CompanyDAO;
+import DAOs.Company.CompanyType;
+import Models.PlaneTripModel.Airline;
 
 public class PlaneTripManager {
 
-	private TripDao tripDao;
+	private TripDAO tripDao;
+	private CompanyDAO companyDao;
 
-	/**
-	 * 
-	 * @param planeTripId
-	 * @param planeClass
-	 * @param option
-	 * @param client
-	 */
-	public Reserved ReservePlaneTrip(String planeTripId, String planeClass, PlaneReserveOption option, Client client) {
-		// TODO - implement PlaneTripManager.ReservePlaneTrip
-		throw new UnsupportedOperationException();
+	public List<Airline> getAirlines() {
+		List<Airline> airlines = new ArrayList<Airline>();
+		return companyDao.GetCompanies(CompanyType.AIRLINE);
 	}
 
-	/**
-	 * 
-	 * @param option
-	 */
-	private void GetPlaneTrip(PlaneReserveOption option) {
-		// TODO - implement PlaneTripManager.GetPlaneTrip
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param reservationId
-	 */
-	public Confirmation ConfirmPlaneTrip(String reservationId) {
-		// TODO - implement PlaneTripManager.ConfirmPlaneTrip
-		throw new UnsupportedOperationException();
-	}
 
 }

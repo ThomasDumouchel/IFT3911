@@ -1,5 +1,9 @@
 package Controllers;
 
+import Models.PlaneTripModel.PlaneReservationOption;
+import Models.TripModel.Client;
+import Models.TripModel.Reservable;
+
 public interface ClientController {
 
 	/**
@@ -17,7 +21,7 @@ public interface ClientController {
 	 * @param option
 	 * @param client
 	 */
-	Reservation ReservePlaneTrip(String planeTripId, String planeClass, PlaneReserveOption option, Client client);
+	Reservable ReservePlaneTrip(String planeTripId, String planeClass, PlaneReservationOption option, Client client);
 
 	/**
 	 * 
@@ -26,7 +30,7 @@ public interface ClientController {
 	 * @param option
 	 * @param client
 	 */
-	Reserved ReserveTrainTrip(String trainId, String trainClass, TrainReserveOption option, Client client);
+	Reserved ReserveTrainTrip(String trainId, String trainClass, TrainReservationOption option, Client client);
 
 	/**
 	 * 
