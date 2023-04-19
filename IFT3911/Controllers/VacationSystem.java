@@ -2,6 +2,7 @@ package Controllers;
 
 import java.util.List;
 
+import Managers.PlaneTripManager;
 import Models.PlaneTripModel.Airline;
 import Models.PlaneTripModel.Airport;
 import Models.PlaneTripModel.Plane;
@@ -12,8 +13,10 @@ import Models.PlaneTripModel.PlaneTrip;
 
 public class VacationSystem implements AdminPlaneTripController {
 
-	public VacationSystem() {
-		
+	private PlaneTripManager planeTripManager;
+
+	public VacationSystem(PlaneTripManager planeTripManager) {
+		this.planeTripManager = planeTripManager;
 	}
 
 	@Override
@@ -102,14 +105,7 @@ public class VacationSystem implements AdminPlaneTripController {
 	}
 
 	@Override
-	public List<PlaneTrip> GetPlaneTrips(String company_id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'GetPlaneTrips'");
-	} //implements ClientController
-
-	// private PaymentManager paymentManager;
-	// private TrainTripManager trainTripManager;
-	// private CruiseTripManager cruiseTripManager;
-	// private PlaneTripManager planeTripManager;
-
+	public List<PlaneTrip> GetPlaneTrips(String companyName) {
+		return planeTripManager.getPlaneTrips(companyName);
+	}
 }
