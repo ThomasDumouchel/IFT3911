@@ -95,7 +95,7 @@ public interface AdminPlaneTripController {
 	// Will create section and all the seats in the section.
 	// Seats are determined by the rowCount and the layout.
 	// TODO: figure out a logic to assign seats numbers (A, B, C) (D, E, F, G)
-
+	
 	/**
 	 * 
 	 * @param id
