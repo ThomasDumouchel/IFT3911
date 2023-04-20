@@ -13,6 +13,16 @@ import Models.PlaneTripModel.Airline;
 import Models.PlaneTripModel.Airport;
 import Models.PlaneTripModel.AirportCreator;
 import Models.PlaneTripModel.PlaneTrip;
+import Models.PlaneTripModel.PlaneSection; // added by C & T
+import Models.PlaneTripModel.PlaneSectionType; // added by C & T
+import Models.PlaneTripModel.PlaneSectionLayoutType; // added by C & T
+import Models.PlaneTripModel.PlaneBusinessClass; // added by C & T
+import Models.PlaneTripModel.PlaneEconomyClass;
+import Models.PlaneTripModel.PlaneEconomyPremiumClass;
+import Models.PlaneTripModel.PlaneFirstClass;
+
+
+
 
 public class PlaneTripManager {
 
@@ -59,5 +69,39 @@ public class PlaneTripManager {
 		return (Airport)terminalDao.update(TerminalType.AIRPORT, name, updated_airport);
 	}
 
+	// Will create section and all the seats in the section.
+	// Seats are determined by the rowCount and the layout.
+	// TODO: figure out a logic to assign seats numbers (A, B, C) (D, E, F, G)
+	public PlaneSection CreatePlaneSection(Integer rowCount, PlaneSectionType sectionType, PlaneSectionLayoutType layout){
+
+		PlaneSection planeSection;
+		if(sectionType == PlaneSectionType.BUSINESS){
+			PlaneBusinessClass planeSectionClass =  new PlaneBusinessClass(layout);
+			//Double planeSectionClassMultiplier = planeSectionClass.getFullPriceMultiplier();
+			//create plane section
+			planeSection = planeSectionClass;
+		} else if(sectionType == PlaneSectionType.ECONOMY){
+			PlaneEconomyClass planeSectionClass =  new PlaneEconomyClass(layout);
+			//Double planeSectionClassMultiplier = planeSectionType.getFullPriceMultiplier();
+			//create plane section
+			planeSection = planeSectionClass;
+		} else if(sectionType == PlaneSectionType.FIRST){
+			PlaneFirstClass planeSectionClass =  new PlaneFirstClass(layout);
+			//Double planeSectionClassMultiplier = planeSectionType.getFullPriceMultiplier();
+			//create plane section
+			planeSection = planeSectionClass;
+		} else{
+			PlaneEconomyPremiumClass planeSectionClass =  new PlaneEconomyPremiumClass(layout);
+			//Double planeSectionClassMultiplier = planeSectionType.getFullPriceMultiplier();
+			//create plane section
+			planeSection = planeSectionClass;
+		}
+
+		//create seats
+		planeSection.createSeats(rowCount, layout);
+
+		
+		return planeSection;
+	}
 
 }
