@@ -2,19 +2,28 @@ package Models.CruiseTripModel;
 
 import Models.TripModel.Company;
 import Models.TripModel.Trip;
-import Views.TripVisitors.TripVisitor;
+import Views.TripVisitors.ITripVisitor;
 
 public class CruiseTrip extends Trip<CruiseShip, Port> {
 
-    protected CruiseTrip(Company company, Double fullPrice) {
+    public CruiseTrip(Company company, Double fullPrice) {
         super(company, fullPrice);
         //TODO Auto-generated constructor stub
     }
 
     @Override
-    public String accept(TripVisitor visitor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'accept'");
+    public String accept(ITripVisitor visitor) {
+        return visitor.visitCruiseTrip(this);
+    }
+
+    @Override
+    public Port getOrigin() {
+        return this.getTravels().get(0).getFrom();
+    }
+
+    @Override
+    public Port getDestination() {
+        return this.getTravels().get(this.getTravels().size() - 1).getTo();
     }
 
 

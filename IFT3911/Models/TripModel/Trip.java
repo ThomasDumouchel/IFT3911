@@ -3,7 +3,7 @@ package Models.TripModel;
 import java.util.ArrayList;
 import java.util.List;
 
-import Views.TripVisitors.TripVisitor;
+import Views.TripVisitors.ITripVisitor;
 
 public abstract class Trip<T extends Transport, X extends Terminal> {
 
@@ -42,10 +42,14 @@ public abstract class Trip<T extends Transport, X extends Terminal> {
 		return this.travels;
 	}
 
+	public abstract X getOrigin();
+
+	public abstract X getDestination();
+
 	/**
 	 * 
 	 * @param visitor
 	 */
-	public abstract String accept(TripVisitor visitor);
+	public abstract String accept(ITripVisitor visitor);
 
 }

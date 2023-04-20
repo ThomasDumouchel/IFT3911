@@ -2,23 +2,21 @@ package Controllers;
 
 import java.util.List;
 
-import Models.PlaneTripModel.Airline;
-import Models.PlaneTripModel.Airport;
-import Models.PlaneTripModel.Plane;
-import Models.PlaneTripModel.PlaneSection;
-import Models.PlaneTripModel.PlaneSectionLayoutType;
-import Models.PlaneTripModel.PlaneSectionType;
-import Models.PlaneTripModel.PlaneTrip;
-import Models.TripModel.Company;
+import DAOs.Trip.TripType;
 
-public interface AdminPlaneTripController {
+import Models.TripModel.Company;
+import Models.TripModel.Section;
+import Models.TripModel.Terminal;
+import Models.TripModel.Trip;
+
+public interface AdminController {
 
 	/**
 	 * 
 	 * @param name
 	 * @param city
 	 */
-	Airport CreateAirport(String name, String city);
+	Terminal CreateTerminal(TripType tripType, String terminal_code, String name, String city);
 	// Create an airport using factory and add it to the database
 
 	/**
@@ -26,14 +24,14 @@ public interface AdminPlaneTripController {
 	 * @param name
 	 * @param updated_airport
 	 */
-	Airport UpdateAirport(String name, Airport updated_airport);
+	Terminal UpdateTerminal(TripType tripType, String terminal_code, Terminal updated_terminal);
 	// Update the airport and return the old airport
 
 	/**
 	 * 
 	 * @param name
 	 */
-	Airport DeleteAirport(String name);
+	Terminal DeleteTerminal(TripType tripType, String terminal_code);
 	// remove the airport from the database and return it
 
 	/**
@@ -41,21 +39,21 @@ public interface AdminPlaneTripController {
 	 * @param name
 	 * @param prefix
 	 */
-	Airline CreateAirline(String name, String prefix);
+	Company CreateCompany(TripType tripType, String name, String prefix);
 
 	/**
 	 * 
 	 * @param id
 	 * @param updated_airline
 	 */
-	Airline UpdateAirline(String id, Airline updated_airline);
+	Company UpdateCompany(TripType tripType, String name, Company updated_company);
 	// return old
 
 	/**
 	 * 
 	 * @param id
 	 */
-	Airline DeleteAirline(String id);
+	Company DeleteCompany(TripType tripType, String name);
 	// return old
 
 
@@ -63,7 +61,7 @@ public interface AdminPlaneTripController {
 	 * 
 	 * @param company
 	 */
-	PlaneTrip CreatePlaneTrip(Airline company);
+	Trip CreateTrip(TripType tripType, Company company);
 	// Will be called when user clicks on "Create Plane Trip".
 	// Simply creates a new plane trip with and airline and empty
 	// travels and empty transport.
@@ -74,7 +72,7 @@ public interface AdminPlaneTripController {
 	 * @param id
 	 * @param updatedPlaneTrip
 	 */
-	PlaneTrip UpdatePlaneTrip(String id, PlaneTrip updatedPlaneTrip);
+	Trip UpdateTrip(TripType tripType, String id, Trip updated_trip);
 	// Will be called during creation of plane trip:
 	// to add the travels and the sections to the plane trip.
 
@@ -82,16 +80,18 @@ public interface AdminPlaneTripController {
 	 * 
 	 * @param id
 	 */
-	PlaneTrip DeletePlaneTrip(String id);
+	Trip DeleteTrip(TripType tripType, String id);
 	// Remove plane trip from the database
 
+
+    // Need new object CreateSectionArgs
 	/**
 	 * 
 	 * @param rowCount
 	 * @param sectionType
 	 * @param layout
 	 */
-	PlaneSection CreatePlaneSection(Integer rowCount, PlaneSectionType sectionType, PlaneSectionLayoutType layout);
+	Section CreateSection(TripType tripType, CreateSectionArgs createSectionArgs);
 	// Will create section and all the seats in the section.
 	// Seats are determined by the rowCount and the layout.
 	// TODO: figure out a logic to assign seats numbers (A, B, C) (D, E, F, G)
@@ -101,20 +101,20 @@ public interface AdminPlaneTripController {
 	 * @param id
 	 * @param updatedPlaneSection
 	 */
-	PlaneSection UpdatePlaneSection(String id, PlaneSection updatedPlaneSection);
+	Section UpdateSection(TripType tripType, String id, Section updated_section);
 
 	/**
 	 * 
 	 * @param id
 	 */
-	PlaneSection DeletePlaneSection(String id);
+	Section DeleteSection(TripType tripType, String id);
 
 	/**
 	 * 
 	 * @param origin_id
 	 * @param destination_id
 	 */
-	List<PlaneTrip> GetPlaneTrips(String origin_id, String destination_id);
+	List<Trip> GetTrips(TripType tripType, String origin_id, String destination_id);
 	// using the plane trip manager, get all the plane trips and return those
 	// that have the origin of origin_id and the destination of destination_id
 
@@ -122,10 +122,10 @@ public interface AdminPlaneTripController {
 	 * 
 	 * @param company_id
 	 */
-	List<PlaneTrip> GetPlaneTrips(String companyName);
+	List<Trip> GetTrips(TripType tripType, String companyName);
 
 	// THOMAS WILL DO, and the data mockup for those ones
-	List<Airport> GetAirports();
+	List<Terminal> GetTerminals(TripType tripType);
 
-	List<Company> GetCompanies();
+	List<Company> GetCompanies(TripType tripType);
 }

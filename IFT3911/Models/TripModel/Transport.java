@@ -9,7 +9,11 @@ public abstract class Transport<S extends Section<R, O, T>, R extends Reservable
 		sections = new ArrayList<S>();
 	}
 
-	public S GetSection(T sectionType) {
+	public List<S> getSections() {
+		return this.sections;
+	}
+
+	public S getSection(T sectionType) {
 		for (S s : this.sections) {
 			if (s.getSectionType() == sectionType) {
 				return s;

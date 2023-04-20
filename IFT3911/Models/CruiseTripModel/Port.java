@@ -4,8 +4,8 @@ import Models.TripModel.Terminal;
 
 public class Port extends Terminal {
 
-    protected Port(String name, String city) {
-        super(name, city);
+    public Port(String name, String code, String city) {
+        super(name, code, city);
     }
 
 }

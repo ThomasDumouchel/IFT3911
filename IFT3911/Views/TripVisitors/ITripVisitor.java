@@ -3,7 +3,7 @@ import Models.CruiseTripModel.CruiseTrip;
 import Models.PlaneTripModel.PlaneTrip;
 import Models.TrainTripModel.TrainTrip;
 
-public interface TripVisitor {
+public interface ITripVisitor {
 
 	/**
 	 * 

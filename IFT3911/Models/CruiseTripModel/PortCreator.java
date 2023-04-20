@@ -4,22 +4,22 @@ import Models.TripModel.TerminalCreator;
 
 public class PortCreator extends TerminalCreator {
 
-	private PortCreator instance;
+	private static PortCreator instance;
 
 	/**
 	 * 
 	 * @param name
 	 * @param city
 	 */
-	public Terminal createTerminal(String name, String city) {
-		return new Port(name, city);
+	public Terminal createTerminal(String name, String code, String city) {
+		return new Port(name, code, city);
 	}
 
-	public PortCreator getInstance() {
-		if (this.instance == null) {
-			this.instance = new PortCreator();
+	public static PortCreator getInstance() {
+		if (instance == null) {
+			instance = new PortCreator();
 		}
-		return this.instance;
+		return instance;
 	}
 
 

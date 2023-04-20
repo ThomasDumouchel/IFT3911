@@ -4,7 +4,7 @@ import Models.CruiseTripModel.CruiseTrip;
 import Models.PlaneTripModel.PlaneTrip;
 import Models.TrainTripModel.TrainTrip;
 
-public class ClientTripVisitor implements TripVisitor {
+public class ClientTripVisitor implements ITripVisitor {
 
 	private SectionType sectionName;
 

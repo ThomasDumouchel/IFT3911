@@ -15,7 +15,7 @@ public class DBTrip {
     
     public DBTrip(TripType type, Trip trip) {
         this.tripId = trip.getId();
-        this.companyId = trip.getCompany().getName();
+        this.companyId = trip.getCompany().getId();
         this.travels = trip.getTravels();
         this.transport = trip.getTransport();
     }
@@ -23,4 +23,9 @@ public class DBTrip {
     public TripType getType() {
         return this.type;
     }
+
+    public String getCompanyId() {
+        return this.companyId;
+    }
+
 }

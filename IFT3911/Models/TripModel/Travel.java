@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class Travel<T extends Terminal> {
 
-	private Terminal to;
-	private Terminal from;
+	private T to;
+	private T from;
 	private Date departureTime;
 	private Date arrivalTime;
 
-	public Travel(Terminal to, Terminal from, Date departureTime, Date arrivalTime) {
+	public Travel(T to, T from, Date departureTime, Date arrivalTime) {
 		this.to = to;
 		this.from = from;
 		this.departureTime = departureTime;
@@ -17,11 +17,11 @@ public class Travel<T extends Terminal> {
 	}
 
 	// Make getters
-	public Terminal getTo() {
+	public T getTo() {
 		return to;
 	}
 
-	public Terminal getFrom() {
+	public T getFrom() {
 		return from;
 	}
 
