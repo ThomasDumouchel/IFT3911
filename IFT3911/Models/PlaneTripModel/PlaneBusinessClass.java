@@ -2,6 +2,7 @@ package Models.PlaneTripModel;
 
 public class PlaneBusinessClass extends PlaneSection {
 
+
     public PlaneBusinessClass(PlaneSectionLayoutType sectionLayout) {
         super(
             PlaneSectionType.BUSINESS, 
@@ -9,5 +10,4 @@ public class PlaneBusinessClass extends PlaneSection {
             sectionLayout
         );
     }
-    
 }

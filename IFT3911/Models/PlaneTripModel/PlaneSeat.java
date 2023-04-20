@@ -1,3 +1,4 @@
+
 package Models.PlaneTripModel;
 
 import Models.TripModel.Reservable;
@@ -6,6 +7,7 @@ public class PlaneSeat extends Reservable<PlaneReservationOption> {
 
 	private Integer row;
 	private String col;
+	
 
 	public PlaneSeat(Integer row, String col) {
 		super();
@@ -19,6 +21,14 @@ public class PlaneSeat extends Reservable<PlaneReservationOption> {
 
 	public String getCol() {
 		return this.col;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	public void setCol(String j) {
+		this.col = j;
 	}
 
 }
