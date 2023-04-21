@@ -3,7 +3,10 @@ package Controllers.Factories;
 import Controllers.CreateSectionArgs;
 import Models.PlaneTripModel.Airline;
 import Models.PlaneTripModel.Airport;
+import Models.PlaneTripModel.PlaneBusinessClass;
 import Models.PlaneTripModel.PlaneEconomyClass;
+import Models.PlaneTripModel.PlaneEconomyPremiumClass;
+import Models.PlaneTripModel.PlaneFirstClass;
 import Models.PlaneTripModel.PlaneSection;
 import Models.PlaneTripModel.PlaneSectionType;
 import Models.PlaneTripModel.PlaneTrip;
@@ -40,8 +43,13 @@ public class PlaneTripFactory implements ITripFactory {
         PlaneSectionType planeSectionType = (PlaneSectionType)sectionType;
         switch (planeSectionType) {
             case ECONOMY:
-                return new PlaneEconomyClass();
-
+                return new PlaneEconomyClass(planeSectionArgs.getLayoutType(), planeSectionArgs.getRows());
+            case ECONOMY_PREMIUM:
+                return new PlaneEconomyPremiumClass(planeSectionArgs.getLayoutType(), planeSectionArgs.getRows());
+            case BUSINESS:
+                return new PlaneBusinessClass(planeSectionArgs.getLayoutType(), planeSectionArgs.getRows());
+            case FIRST:
+                return new PlaneFirstClass(planeSectionArgs.getLayoutType(), planeSectionArgs.getRows());
             default:
                 throw new UnsupportedOperationException("Section type not supported");
         }

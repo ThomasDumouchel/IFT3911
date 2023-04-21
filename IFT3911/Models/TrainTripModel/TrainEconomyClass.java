@@ -1,8 +1,7 @@
 package Models.TrainTripModel;
 public class TrainEconomyClass extends TrainSection {
 
-    public TrainEconomyClass(TrainSectionType sectionType, Double fullPriceMutliplier) {
-        super(sectionType, fullPriceMutliplier);
-        //TODO Auto-generated constructor stub
+    public TrainEconomyClass(int nbOfRows) {
+        super(TrainSectionType.ECONOMY, 0.5, nbOfRows);
     }
 }

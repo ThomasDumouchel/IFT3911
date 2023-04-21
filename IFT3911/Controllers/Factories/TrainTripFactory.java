@@ -1,7 +1,10 @@
 package Controllers.Factories;
 
 import Controllers.CreateSectionArgs;
+import Models.TrainTripModel.TrainEconomyClass;
+import Models.TrainTripModel.TrainFirstClass;
 import Models.TrainTripModel.TrainLine;
+import Models.TrainTripModel.TrainSectionType;
 import Models.TrainTripModel.TrainStation;
 import Models.TrainTripModel.TrainTrip;
 import Models.TripModel.Company;
@@ -34,8 +37,15 @@ public class TrainTripFactory implements ITripFactory {
     @Override
     public Section createSection(ISectionType sectionType, CreateSectionArgs args) {
         CreateTrainSectionArgs planeSectionArgs = (CreateTrainSectionArgs)args;
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'CreateSection'");
+        TrainSectionType trainSectionType = (TrainSectionType)sectionType;
+        switch (trainSectionType) {
+            case FIRST:
+                return new TrainFirstClass(planeSectionArgs.getRows());
+            case ECONOMY:
+                return new TrainEconomyClass(planeSectionArgs.getRows());
+            default:
+                throw new UnsupportedOperationException("Section type not supported");
+        }
     }
 
     @Override
