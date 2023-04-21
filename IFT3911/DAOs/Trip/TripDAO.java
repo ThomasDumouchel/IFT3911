@@ -3,6 +3,7 @@ package DAOs.Trip;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAOs.TripObserver.TripEventManager;
 import Models.CruiseTripModel.CruiseTrip;
 import Models.PlaneTripModel.PlaneTrip;
 import Models.TrainTripModel.TrainTrip;
@@ -11,8 +12,11 @@ import Models.TripModel.Trip;
 public class TripDAO {
 
     private List<DBTrip> trips;
+    private TripEventManager tripEventManager;
 
-    public TripDAO() {
+
+    public TripDAO(TripEventManager tripEventManager) {
+        this.tripEventManager = tripEventManager;
         trips = new ArrayList<DBTrip>();
     }
 

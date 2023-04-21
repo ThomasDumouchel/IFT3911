@@ -5,17 +5,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import DAOs.Trip.TripType;
+import DAOs.TripObserver.TripEventManager;
 import Models.CruiseTripModel.Port;
 import Models.PlaneTripModel.Airport;
 import Models.TrainTripModel.TrainStation;
 import Models.TripModel.Terminal;
-import Models.TripModel.Trip;
 
 public class TerminalDAO {
 
-    List<DBTerminal> terminals;
+    private List<DBTerminal> terminals;
+    private TripEventManager tripEventManager;
 
-    public TerminalDAO() {
+    public TerminalDAO(TripEventManager tripEventManager) {
+        this.tripEventManager = tripEventManager;
         this.terminals = new ArrayList<DBTerminal>(Arrays.asList(
             new DBTerminal(TripType.PLANE, new Airport("Aeropuerto Internacional de Ezeiza", "ABC", "Buenos Aires")),
             new DBTerminal(TripType.PLANE, new Airport("Aeropuerto Internacional de Carrasco", "DEF", "Montevideo")),

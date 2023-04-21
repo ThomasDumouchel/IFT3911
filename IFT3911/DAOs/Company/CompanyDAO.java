@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import DAOs.Trip.TripType;
+import DAOs.TripObserver.TripEventManager;
 import Models.CruiseTripModel.CruiseLine;
 import Models.PlaneTripModel.Airline;
 import Models.TrainTripModel.TrainLine;
@@ -13,8 +14,10 @@ import Models.TripModel.Company;
 public class CompanyDAO {
 
     private List<DBCompany> companies;
+    private TripEventManager tripEventManager;
 
-    public CompanyDAO() {
+    public CompanyDAO(TripEventManager tripEventManager) {
+        this.tripEventManager = tripEventManager;
         this.companies = new ArrayList<DBCompany>(Arrays.asList(
             new DBCompany(TripType.PLANE, new Airline("Delta", "DL")),
             new DBCompany(TripType.PLANE, new Airline("American Airlines", "AA")),

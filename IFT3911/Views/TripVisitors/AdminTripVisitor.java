@@ -2,41 +2,66 @@ package Views.TripVisitors;
 
 import java.util.List;
 
+import Models.CruiseTripModel.CruiseSection;
 import Models.CruiseTripModel.CruiseTrip;
-import Models.PlaneTripModel.Airport;
 import Models.PlaneTripModel.PlaneSection;
 import Models.PlaneTripModel.PlaneTrip;
+import Models.TrainTripModel.TrainSection;
 import Models.TrainTripModel.TrainTrip;
-import Models.TripModel.Section;
-import Models.TripModel.Travel;
 
 public class AdminTripVisitor implements ITripVisitor {
 
     @Override
-    public String visitPlaneTrip(PlaneTrip p) {
+    public String visitPlaneTrip(PlaneTrip trip) {
         String result = "";
-        Travel<Airport> travel = p.getTravels().get(0);
-        result += travel.getFrom().getCode() + " - " + travel.getTo().getCode() + ":";
-        result += "[" + p.getCompany().getName() + "]";
-        result += p.getId();
-        result += "(" + travel.getDepartureTime().toString() + "-" + travel.getArrivalTime().toString() + ")";
-        List<PlaneSection> sections = p.getTransport().getSections();
+        result += trip.getOrigin().getCode() + " - " + trip.getDestination().getCode() + ":";
+        result += "[" + trip.getCompany().getName() + "]";
+        result += trip.getId();
+        result += "(" + trip.getFirstTravel().getDepartureTime().toString() + "-" + trip.getLastTravel().getArrivalTime().toString() + ")";
+        List<PlaneSection> sections = trip.getTransport().getSections();
         for (PlaneSection s : sections) {
-            result += "|" + s.getSectionType().toString() + ":";
-            result += s.getCapacity() + "/" + s.getAvailableSeats();
+            result += "|" + s.getSectionType().getCode() + s.getSectionLayout().getCode();
+            result += Long.toString(s.getReservables().stream().filter(r -> r.isAvailable()).count())
+                + "/" + Integer.toString(s.getReservables().size());
+            result += String.format("%.2f", trip.getFullPrice() * s.getFullPriceMultiplier());
         }
         return result;
     }
 
     @Override
-    public String visitCruiseTrip(CruiseTrip c) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'visitCruiseTrip'");
+    public String visitTrainTrip(TrainTrip trip) {
+        String result = "";
+        result += trip.getOrigin().getCode() + " - " + trip.getDestination().getCode() + ":";
+        result += "[" + trip.getCompany().getName() + "]";
+        result += trip.getId();
+        result += "(" + trip.getFirstTravel().getDepartureTime().toString() + "-" + trip.getLastTravel().getArrivalTime().toString() + ")";
+        List<TrainSection> sections = trip.getTransport().getSections();
+        for (TrainSection s : sections) {
+            result += "|" + s.getSectionType().getCode();
+            result += Long.toString(s.getReservables().stream().filter(r -> r.isAvailable()).count())
+                + "/" + Integer.toString(s.getReservables().size());
+            result += String.format("%.2f", trip.getFullPrice() * s.getFullPriceMultiplier());
+        }
+        return result;
     }
 
     @Override
-    public String visitTrainTrip(TrainTrip t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'visitTrainTrip'");
+    public String visitCruiseTrip(CruiseTrip trip) {
+        String result = "";
+        result += trip.getOrigin().getCode() + " - " + trip.getDestination().getCode() + ":";
+        result += "[" + trip.getCompany().getName() + "]";
+        result += trip.getId();
+        result += "(" + trip.getFirstTravel().getDepartureTime().toString() + "-" + trip.getLastTravel().getArrivalTime().toString() + ")";
+        List<CruiseSection> sections = trip.getTransport().getSections();
+        for (CruiseSection s : sections) {
+            result += "|" + s.getSectionType().getCode();
+            result += Long.toString(s.getReservables().stream().filter(r -> r.isAvailable()).count())
+                + "/" + Integer.toString(s.getReservables().size());
+            result += String.format("%.2f", trip.getFullPrice() * s.getFullPriceMultiplier());
+        }
+        return result;
     }
+
+
+
 }

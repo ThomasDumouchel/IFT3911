@@ -42,9 +42,21 @@ public abstract class Trip<T extends Transport, X extends Terminal> {
 		return this.travels;
 	}
 
-	public abstract X getOrigin();
+	public Travel<X> getFirstTravel(){
+		return this.travels.get(0);
+	}
 
-	public abstract X getDestination();
+	public X getOrigin(){
+		return this.getFirstTravel().getFrom();
+	}
+
+	public X getDestination(){
+		return this.getLastTravel().getTo();
+	}
+
+	public Travel<X> getLastTravel(){
+		return this.travels.get(this.travels.size() - 1);
+	}
 
 	/**
 	 * 

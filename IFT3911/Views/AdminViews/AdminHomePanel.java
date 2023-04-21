@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import DAOs.Trip.TripType;
-import Views.TripEventListener;
+import DAOs.TripObserver.TripEventListener;
 
 public class AdminHomePanel extends JPanel {
 

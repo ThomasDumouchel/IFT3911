@@ -2,6 +2,7 @@ import Controllers.VacationSystem;
 import DAOs.Company.CompanyDAO;
 import DAOs.Terminal.TerminalDAO;
 import DAOs.Trip.TripDAO;
+import DAOs.TripObserver.TripEventManager;
 import Managers.TripManager;
 
 import Views.HomeViews.HomeGUI;
@@ -9,10 +10,13 @@ import Views.HomeViews.HomeGUI;
 public class App {
     // main
     public static void main(String[] args) {
+        // Create observer manager
+        TripEventManager tripEventManager = new TripEventManager();
+
         // Create DAOS
-        TerminalDAO terminalDAO = new TerminalDAO();
-        CompanyDAO companyDAO = new CompanyDAO();
-        TripDAO tripDAO = new TripDAO();
+        TerminalDAO terminalDAO = new TerminalDAO(tripEventManager);
+        CompanyDAO companyDAO = new CompanyDAO(tripEventManager);
+        TripDAO tripDAO = new TripDAO(tripEventManager);
 
         // Create Managers
         TripManager tripManager = new TripManager(

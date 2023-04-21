@@ -15,16 +15,5 @@ public class TrainTrip extends Trip<Train, TrainStation> {
         return visitor.visitTrainTrip(this);
     }
 
-    @Override
-    public TrainStation getOrigin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOrigin'");
-    }
-
-    @Override
-    public TrainStation getDestination() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDestination'");
-    }
 
 }

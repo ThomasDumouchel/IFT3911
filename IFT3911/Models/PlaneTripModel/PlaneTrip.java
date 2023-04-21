@@ -18,19 +18,6 @@ public class PlaneTrip extends Trip<Plane, Airport> {
         return visitor.visitPlaneTrip(this);
     }
 
-    @Override
-    public Airport getOrigin() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOrigin'");
-    }
-
-    @Override
-    public Airport getDestination() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDestination'");
-    }
-
-
 
 
 }

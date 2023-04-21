@@ -11,10 +11,10 @@ import javax.swing.JPanel;
 
 import Controllers.AdminController;
 import DAOs.Trip.TripType;
+import DAOs.TripObserver.TripEventListener;
 import Models.TripModel.Company;
 import Models.TripModel.Terminal;
 import Models.TripModel.Trip;
-import Views.TripEventListener;
 import Views.AdminCommands.AdminCommand;
 import Views.AdminCommands.AdminCommandHistory;
 
@@ -111,13 +111,6 @@ public class AdminGUI extends JFrame implements TripEventListener {
         changeCard("searchResults");
     }
 
-
-    @Override
-    public void update(String objectId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
     public AdminController getController() {
         return this.adminController;
     }
@@ -133,5 +126,11 @@ public class AdminGUI extends JFrame implements TripEventListener {
         if (command != null) {
             command.undo();
         }
+    }
+
+    @Override
+    public void update(Object object) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }
