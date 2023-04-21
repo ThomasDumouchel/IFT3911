@@ -8,15 +8,17 @@ import Views.AdminViews.AdminGUI;
 public class AdminCommandCreateTrip extends AdminCommand<Trip> {
 
     private Company company;
+    private Double fullPrice;
 
-    public AdminCommandCreateTrip(AdminGUI adminGUI, TripType tripType, Company company) {
+    public AdminCommandCreateTrip(AdminGUI adminGUI, TripType tripType, Company company, Double fullPrice) {
         super(adminGUI, tripType);
         this.company = company;
+        this.fullPrice = fullPrice;
     }
 
     @Override
     public boolean execute() {
-        Trip trip = getAdminGUI().getController().CreateTrip(getTripType(), company);
+        Trip trip = getAdminGUI().getController().CreateTrip(getTripType(), company, fullPrice);
         saveBackup(trip);
         return true;
     }

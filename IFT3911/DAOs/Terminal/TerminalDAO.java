@@ -6,9 +6,6 @@ import java.util.List;
 
 import DAOs.Trip.TripType;
 import DAOs.TripObserver.TripEventManager;
-import Models.CruiseTripModel.Port;
-import Models.PlaneTripModel.Airport;
-import Models.TrainTripModel.TrainStation;
 import Models.TripModel.Terminal;
 
 public class TerminalDAO {
@@ -18,17 +15,7 @@ public class TerminalDAO {
 
     public TerminalDAO(TripEventManager tripEventManager) {
         this.tripEventManager = tripEventManager;
-        this.terminals = new ArrayList<DBTerminal>(Arrays.asList(
-            new DBTerminal(TripType.PLANE, new Airport("Aeropuerto Internacional de Ezeiza", "ABC", "Buenos Aires")),
-            new DBTerminal(TripType.PLANE, new Airport("Aeropuerto Internacional de Carrasco", "DEF", "Montevideo")),
-            new DBTerminal(TripType.PLANE, new Airport("Aeropuerto Internacional de Guarulhos", "XYZ", "Sao Paulo")),
-            new DBTerminal(TripType.TRAIN, new TrainStation("Estacion de Trenes de Retiro", "LKY", "Buenos Aires")),
-            new DBTerminal(TripType.TRAIN, new TrainStation("Estacion de Trenes de Constitucion", "HYQ", "Buenos Aires")),
-            new DBTerminal(TripType.TRAIN, new TrainStation("Estacion de Trenes de Once", "WER", "Buenos Aires")),
-            new DBTerminal(TripType.CRUISE, new Port("Puerto de Buenos Aires", "BNR", "Buenos Aires")),
-            new DBTerminal(TripType.CRUISE, new Port("Puerto de Montevideo", "QWE","Montevideo")),
-            new DBTerminal(TripType.CRUISE, new Port("Puerto de Santos", "VBN", "Sao Paulo"))
-        ));
+        this.terminals = new ArrayList<>();
     }
 
     private List<DBTerminal> getDBTerminals(TripType type){

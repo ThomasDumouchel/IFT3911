@@ -64,4 +64,12 @@ public abstract class Trip<T extends Transport, X extends Terminal> {
 	 */
 	public abstract String accept(ITripVisitor visitor);
 
+	public void setTranport(T t) {
+		this.transport = t;
+	}
+
+    public void setTravels(List<Travel<X>> travels) {
+		this.travels = travels;
+    }
+
 }

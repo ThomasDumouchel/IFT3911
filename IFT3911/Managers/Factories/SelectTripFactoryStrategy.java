@@ -1,4 +1,4 @@
-package Controllers.Factories;
+package Managers.Factories;
 
 import DAOs.Trip.TripType;
 

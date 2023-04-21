@@ -27,7 +27,6 @@ public class AdminGUI extends JFrame implements TripEventListener {
     private AdminSearchTripsPanel searchTripsPanel;
     private AdminController adminController;
     private AdminCommandHistory adminCommandHistory;
-    // private JPanel createPlaneTripPanel;
 
 	public AdminGUI(
         AdminController adminController

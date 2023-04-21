@@ -1,14 +1,10 @@
 package DAOs.Company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import DAOs.Trip.TripType;
 import DAOs.TripObserver.TripEventManager;
-import Models.CruiseTripModel.CruiseLine;
-import Models.PlaneTripModel.Airline;
-import Models.TrainTripModel.TrainLine;
 import Models.TripModel.Company;
 
 public class CompanyDAO {
@@ -18,17 +14,7 @@ public class CompanyDAO {
 
     public CompanyDAO(TripEventManager tripEventManager) {
         this.tripEventManager = tripEventManager;
-        this.companies = new ArrayList<DBCompany>(Arrays.asList(
-            new DBCompany(TripType.PLANE, new Airline("Delta", "DL")),
-            new DBCompany(TripType.PLANE, new Airline("American Airlines", "AA")),
-            new DBCompany(TripType.PLANE, new Airline("United Airlines", "UA")),
-            new DBCompany(TripType.TRAIN, new TrainLine("Amtrak", "AM")),
-            new DBCompany(TripType.TRAIN, new TrainLine("Greyhound", "GR")),
-            new DBCompany(TripType.TRAIN, new TrainLine("Megabus", "MB")),
-            new DBCompany(TripType.CRUISE, new CruiseLine("Norwegian Cruise Line", "NC")),
-            new DBCompany(TripType.CRUISE, new CruiseLine("Carnival", "CA")),
-            new DBCompany(TripType.CRUISE, new CruiseLine("Royal Caribbean", "RC"))
-        ));
+        this.companies = new ArrayList<DBCompany>();
     }
 
     private List<DBCompany> GetAllDBCompanies(TripType tripType) {
@@ -39,11 +25,6 @@ public class CompanyDAO {
             }
         }
         return result;
-    }
-
-
-    public static Company ToAppModel(DBCompany dbWrapper) {
-        return dbWrapper.getCompany();
     }
 
     public Company addCompany(TripType tripType, Company company) {
@@ -76,9 +57,22 @@ public class CompanyDAO {
     public List<Company> getCompanies(TripType tripType) {
         List<Company> result = new ArrayList<Company>();
         for (DBCompany dbCompany : GetAllDBCompanies(tripType)) {
-            result.add((Airline)ToAppModel(dbCompany));
+            result.add(ToAppModel(dbCompany));
         }
         return result;
+    }
+
+    public Company getCompany(TripType type, String companyId) {
+        for (DBCompany dbCompany : GetAllDBCompanies(type)) {
+            if (dbCompany.getCompany().getId().equals(companyId)) {
+                return ToAppModel(dbCompany);
+            }
+        }
+        throw new RuntimeException("Company not found");
+    }
+
+    public static Company ToAppModel(DBCompany dbWrapper) {
+        return dbWrapper.getCompany();
     }
 
 

@@ -5,6 +5,7 @@ import java.util.List;
 import DAOs.Trip.TripType;
 
 import Models.TripModel.Company;
+import Models.TripModel.ISectionType;
 import Models.TripModel.Section;
 import Models.TripModel.Terminal;
 import Models.TripModel.Trip;
@@ -61,7 +62,7 @@ public interface AdminController {
 	 * 
 	 * @param company
 	 */
-	Trip CreateTrip(TripType tripType, Company company);
+	Trip CreateTrip(TripType tripType, String company_name, Double fullPrice);
 	// Will be called when user clicks on "Create Plane Trip".
 	// Simply creates a new plane trip with and airline and empty
 	// travels and empty transport.
@@ -91,7 +92,7 @@ public interface AdminController {
 	 * @param sectionType
 	 * @param layout
 	 */
-	Section CreateSection(TripType tripType, CreateSectionArgs createSectionArgs);
+	Section CreateSection(TripType tripType, ISectionType sectionType, CreateSectionArgs createSectionArgs);
 	// Will create section and all the seats in the section.
 	// Seats are determined by the rowCount and the layout.
 	// TODO: figure out a logic to assign seats numbers (A, B, C) (D, E, F, G)

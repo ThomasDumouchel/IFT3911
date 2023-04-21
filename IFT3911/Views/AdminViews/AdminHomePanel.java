@@ -1,8 +1,5 @@
 package Views.AdminViews;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -10,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import DAOs.Trip.TripType;
-import DAOs.TripObserver.TripEventListener;
+import Views.AdminCommands.AdminCommandDeleteTrip;
 
 public class AdminHomePanel extends JPanel {
 
@@ -50,6 +47,11 @@ public class AdminHomePanel extends JPanel {
 
 		searchCruiseTrips.addActionListener(e -> {
 			this.context.goToSearchTrips(TripType.CRUISE);
+		});
+
+		createPlaneTrip.addActionListener(e -> {
+			AdminCommandDeleteTrip command = new AdminCommandDeleteTrip(this.context, TripType.PLANE, "name");
+			this.context.executeCommand(command);
 		});
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

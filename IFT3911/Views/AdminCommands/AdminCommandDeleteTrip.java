@@ -22,7 +22,7 @@ public class AdminCommandDeleteTrip extends AdminCommand<Trip> {
 
     @Override
     public void undo() {
-        getAdminGUI().getController().CreateTrip(getTripType(), getBackup().getCompany());
+        getAdminGUI().getController().CreateTrip(getTripType(), getBackup().getCompany(), getBackup().getFullPrice());
         getAdminGUI().getController().UpdateTrip(getTripType(), getBackup().getId(), getBackup());
     }
     

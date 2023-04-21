@@ -8,6 +8,7 @@ import DAOs.Trip.TripType;
 import Models.Payment.PaymentInfo;
 
 import Models.TripModel.Client;
+import Models.TripModel.ISectionType;
 import Models.TripModel.Reservable;
 import Models.TripModel.ReservationOption;
 import Models.TripModel.Trip;
@@ -28,7 +29,7 @@ public interface ClientController {
 	 * @param planeClass
 	 * @param option
 	 */
-	Reservable ReserveTrip(TripType tripType, String tripId, Enum<?> sectionType, ReservationOption option);
+	Reservable ReserveTrip(TripType tripType, String tripId, ISectionType sectionType, ReservationOption option);
 
 	/**
 	 * 
@@ -37,7 +38,7 @@ public interface ClientController {
 	 * @param date
 	 * @param planeClass
 	 */
-	List<Trip> GetTrips(TripType tripType, String originId, String destinationId, Date date, Enum<?> sectionType);
+	List<Trip> GetTrips(TripType tripType, String originId, String destinationId, Date date, ISectionType sectionType);
 	// Note... for the TripType.CRUISE, destinationId is going to be null
 
 

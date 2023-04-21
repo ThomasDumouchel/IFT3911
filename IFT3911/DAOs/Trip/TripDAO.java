@@ -19,9 +19,7 @@ public class TripDAO {
 
     public TripDAO(TripEventManager tripEventManager) {
         this.tripEventManager = tripEventManager;
-        trips = new ArrayList<DBTrip>(Arrays.asList(
-
-        ));
+        this.trips = new ArrayList<>();
     }
 
     public List<DBTrip> getAllOfType(TripType tripType) {
@@ -38,20 +36,21 @@ public class TripDAO {
         trips.add(ToDBModel(trip));
     }
 
-    public void deleteTrip(TripType tripType, String id) {
+    public DBTrip deleteTrip(TripType tripType, String id) {
         for (var trip : getAllOfType(tripType)) {
             if (trip.getId().equals(id)) {
                 trips.remove(trip);
-                return;
+                return trip;
             }
         }
         throw new RuntimeException("Trip not found");
     }
 
-    public void updateTrip(TripType tripType, String id, Trip trip) {
-        deleteTrip(tripType, id);
-        trips.add(ToDBModel(trip));
-        tripEventManager.notify(TripEventType.TRIP, trip);
+    public DBTrip updateTrip(TripType tripType, String id, Trip updated_trip) {
+        var deleted_trip = deleteTrip(tripType, id);
+        trips.add(ToDBModel(updated_trip));
+        tripEventManager.notify(TripEventType.TRIP, updated_trip);
+        return deleted_trip;
     }
 
     public static DBTrip ToDBModel(Trip company) {
@@ -64,6 +63,15 @@ public class TripDAO {
             type = TripType.CRUISE;
         }
         return new DBTrip(type, company);
+    }
+
+    public DBTrip getTrip(TripType tripType, String tripId) {
+        for (var trip : getAllOfType(tripType)) {
+            if (trip.getId().equals(tripId)) {
+                return trip;
+            }
+        }
+        throw new RuntimeException("Trip not found");
     }
 
 

@@ -1,4 +1,4 @@
-package Controllers.Factories;
+package Managers.Factories;
 
 import Controllers.CreateSectionArgs;
 import Models.PlaneTripModel.Airline;
@@ -7,7 +7,6 @@ import Models.PlaneTripModel.PlaneBusinessClass;
 import Models.PlaneTripModel.PlaneEconomyClass;
 import Models.PlaneTripModel.PlaneEconomyPremiumClass;
 import Models.PlaneTripModel.PlaneFirstClass;
-import Models.PlaneTripModel.PlaneSection;
 import Models.PlaneTripModel.PlaneSectionType;
 import Models.PlaneTripModel.PlaneTrip;
 import Models.TripModel.Company;

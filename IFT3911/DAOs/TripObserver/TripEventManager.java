@@ -10,7 +10,7 @@ public class TripEventManager {
 	private HashMap<TripEventType, List<TripEventListener>> listeners;
 
 	public TripEventManager() {
-		this.listeners = new HashMap<>(0, 0);
+		this.listeners = new HashMap<>();
 	}
 
 	/**

@@ -5,9 +5,12 @@ import java.util.List;
 
 import DAOs.Trip.TripType;
 import Managers.TripManager;
+import Managers.PaymentManager;
+import Models.Payment.Payment;
 import Models.Payment.PaymentInfo;
 import Models.TripModel.Client;
 import Models.TripModel.Company;
+import Models.TripModel.ISectionType;
 import Models.TripModel.Reservable;
 import Models.TripModel.ReservationOption;
 import Models.TripModel.Section;
@@ -17,9 +20,11 @@ import Models.TripModel.Trip;
 public class VacationSystem implements AdminController, ClientController {
 
 	private TripManager tripManager;
+	private Managers.PaymentManager paymentManager;
 
-	public VacationSystem(TripManager tripManager) {
+	public VacationSystem(TripManager tripManager, PaymentManager paymentManager) {
 		this.tripManager = tripManager;
+		this.paymentManager = paymentManager;
 	}
 
 	@Override
@@ -29,68 +34,57 @@ public class VacationSystem implements AdminController, ClientController {
 
 	@Override
 	public Terminal UpdateTerminal(TripType tripType, String terminal_code, Terminal updated_terminal) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'UpdateTerminal'");
+		return this.tripManager.updateTerminal(tripType, terminal_code, updated_terminal);
 	}
 
 	@Override
 	public Terminal DeleteTerminal(TripType tripType, String terminal_code) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'DeleteTerminal'");
+		return this.tripManager.deleteTerminal(tripType, terminal_code);
 	}
 
 	@Override
 	public Company CreateCompany(TripType tripType, String name, String prefix) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'CreateCompany'");
+		return this.tripManager.createCompany(tripType, name, prefix);
 	}
 
 	@Override
 	public Company UpdateCompany(TripType tripType, String name, Company updated_company) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'UpdateCompany'");
+		return this.tripManager.updateCompany(tripType, name, updated_company);
 	}
 
 	@Override
 	public Company DeleteCompany(TripType tripType, String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'DeleteCompany'");
+		return this.tripManager.deleteCompany(tripType, name);
 	}
 
 	@Override
-	public Trip CreateTrip(TripType tripType, Company company) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'CreateTrip'");
+	public Trip CreateTrip(TripType tripType, String company_name, Double fullPrice) {
+		return this.tripManager.createTrip(tripType, company_name, fullPrice);
 	}
 
 	@Override
 	public Trip UpdateTrip(TripType tripType, String id, Trip updated_trip) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'UpdateTrip'");
+		return this.tripManager.updateTrip(tripType, id, updated_trip);
 	}
 
 	@Override
 	public Trip DeleteTrip(TripType tripType, String id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'DeleteTrip'");
+		return this.tripManager.deleteTrip(tripType, id);
 	}
 
 	@Override
-	public Section CreateSection(TripType tripType, CreateSectionArgs createSectionArgs) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'CreateSection'");
+	public Section CreateSection(TripType tripType, ISectionType sectionType, CreateSectionArgs createSectionArgs) {
+		return this.tripManager.createSection(tripType, sectionType, createSectionArgs);
 	}
 
 	@Override
 	public Section UpdateSection(TripType tripType, String id, Section updated_section) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'UpdateSection'");
+		return this.tripManager.updateSection(tripType, id, updated_section);
 	}
 
 	@Override
 	public Section DeleteSection(TripType tripType, String id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'DeleteSection'");
+		return this.tripManager.deleteSection(tripType, id);
 	}
 
 	@Override
@@ -115,21 +109,21 @@ public class VacationSystem implements AdminController, ClientController {
 
 	@Override
 	public Reservable Confirm(String reservationId, PaymentInfo paymentInfo, Client client) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'Confirm'");
+		// First make payment
+		Payment payment = this.paymentManager.makePayment(paymentInfo);
+		// Then confirm reservation
+		return this.tripManager.confirm(reservationId, paymentInfo, client);
 	}
 
 	@Override
-	public Reservable ReserveTrip(TripType tripType, String tripId, Enum<?> sectionType, ReservationOption option) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'ReserveTrip'");
+	public Reservable ReserveTrip(TripType tripType, String tripId, ISectionType sectionType, ReservationOption option) {
+		return this.tripManager.reserveTrip(tripType, tripId, sectionType, option);
 	}
 
 	@Override
 	public List<Trip> GetTrips(TripType tripType, String originId, String destinationId, Date date,
-			Enum<?> sectionType) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'GetTrips'");
+			ISectionType sectionType) {
+		return this.tripManager.getTrips(tripType, originId, destinationId, date, sectionType);
 	}
 
 }
