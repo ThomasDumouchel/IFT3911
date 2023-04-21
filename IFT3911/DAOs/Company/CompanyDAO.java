@@ -1,55 +1,82 @@
 package DAOs.Company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import Models.CruiseTripModel.CruiseLine;
-import Models.PlaneTripModel.Airline;
-import Models.TrainTripModel.TrainLine;
+import DAOs.Trip.TripType;
+import DAOs.TripObserver.TripEventManager;
 import Models.TripModel.Company;
 
 public class CompanyDAO {
 
     private List<DBCompany> companies;
+    private TripEventManager tripEventManager;
 
-    public CompanyDAO() {
-        this.companies = new ArrayList<DBCompany>(Arrays.asList(
-            new DBCompany(CompanyType.AIRLINE, new Airline("Delta", "DL")),
-            new DBCompany(CompanyType.AIRLINE, new Airline("American Airlines", "AA")),
-            new DBCompany(CompanyType.AIRLINE, new Airline("United Airlines", "UA")),
-            new DBCompany(CompanyType.TRAINLINE, new TrainLine("Amtrak", "AM")),
-            new DBCompany(CompanyType.TRAINLINE, new TrainLine("Greyhound", "GR")),
-            new DBCompany(CompanyType.TRAINLINE, new TrainLine("Megabus", "MB")),
-            new DBCompany(CompanyType.CRUISELINE, new CruiseLine("Norwegian Cruise Line", "NC")),
-            new DBCompany(CompanyType.CRUISELINE, new CruiseLine("Carnival", "CA")),
-            new DBCompany(CompanyType.CRUISELINE, new CruiseLine("Royal Caribbean", "RC"))
-        ));
+    public CompanyDAO(TripEventManager tripEventManager) {
+        this.tripEventManager = tripEventManager;
+        this.companies = new ArrayList<DBCompany>();
     }
 
-    public List<Company> GetCompanies(CompanyType compapyType) {
-        List<Company> result = new ArrayList<Company>();
+    private List<DBCompany> GetAllDBCompanies(TripType tripType) {
+        List<DBCompany> result = new ArrayList<DBCompany>();
         for (DBCompany dbCompany : this.companies) {
-            result.add(CompanyDAO.ToAppModel(dbCompany));
+            if (dbCompany.getType() == tripType){
+                result.add(dbCompany);
+            }
         }
         return result;
+    }
+
+    public Company addCompany(TripType tripType, Company company) {
+        DBCompany dbCompany = new DBCompany(tripType, company);
+        this.companies.add(dbCompany);
+        return company;
+    }
+
+    public Company deleteCompany(TripType tripType, String companyId) {
+        for (DBCompany dbCompany : GetAllDBCompanies(tripType)) {
+            if (dbCompany.getCompany().getId().equals(companyId)) {
+                this.companies.remove(dbCompany);
+                return dbCompany.getCompany();
+            }
+        }
+        throw new RuntimeException("Company not found");
+    }
+
+    public Company updateCompany(TripType tripType, Company company) {
+        for (DBCompany dbCompany : GetAllDBCompanies(tripType)) {
+            if (dbCompany.getCompany().getId().equals(company.getId())) {
+                dbCompany.setCompany(company);
+                return company;
+            }
+        }
+        throw new RuntimeException("Company not found");
+    }
+
+
+    public List<Company> getCompanies(TripType tripType) {
+        List<Company> result = new ArrayList<Company>();
+        for (DBCompany dbCompany : GetAllDBCompanies(tripType)) {
+            result.add(ToAppModel(dbCompany));
+        }
+        return result;
+    }
+
+    public Company getCompany(TripType type, String companyId) {
+        for (DBCompany dbCompany : GetAllDBCompanies(type)) {
+            if (dbCompany.getCompany().getId().equals(companyId)) {
+                return ToAppModel(dbCompany);
+            }
+        }
+        throw new RuntimeException("Company not found");
     }
 
     public static Company ToAppModel(DBCompany dbWrapper) {
         return dbWrapper.getCompany();
     }
 
-    public static DBCompany ToDBModel(Company company) {
-        CompanyType type = null;
-        if (company instanceof Airline) {
-            type = CompanyType.AIRLINE;
-        } else if (company instanceof TrainLine) {
-            type = CompanyType.TRAINLINE;
-        } else if (company instanceof CruiseLine) {
-            type = CompanyType.CRUISELINE;
-        }
-        return new DBCompany(type, company);
-    }
+
+
 
     
 }

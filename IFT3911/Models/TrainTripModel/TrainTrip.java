@@ -2,17 +2,18 @@ package Models.TrainTripModel;
 
 import Models.TripModel.Company;
 import Models.TripModel.Trip;
-import Views.TripVisitors.TripVisitor;
+import Views.TripVisitors.ITripVisitor;
 
 public class TrainTrip extends Trip<Train, TrainStation> {
 
-    protected TrainTrip(Company company, Double fullPrice) {
+    public TrainTrip(Company company, Double fullPrice) {
         super(company, fullPrice);
     }
 
     @Override
-    public String accept(TripVisitor visitor) {
+    public String accept(ITripVisitor visitor) {
         return visitor.visitTrainTrip(this);
     }
+
 
 }

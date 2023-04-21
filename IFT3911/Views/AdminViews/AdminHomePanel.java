@@ -1,15 +1,13 @@
 package Views.AdminViews;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Views.TripEventListener;
+import DAOs.Trip.TripType;
+import Views.AdminCommands.AdminCommandDeleteTrip;
 
 public class AdminHomePanel extends JPanel {
 
@@ -19,14 +17,14 @@ public class AdminHomePanel extends JPanel {
 		super();
 		this.context = context;
 
-		JButton searchTripsButton = new JButton("Plane");
-		JButton button2 = new JButton("Train");
-		JButton button3 = new JButton("Cruise");
+		JButton searchPlaneTrips = new JButton("Plane");
+		JButton searchTrainTrips = new JButton("Train");
+		JButton searchCruiseTrips = new JButton("Cruise");
 		JPanel searchTripsPanel = new JPanel();
 		searchTripsPanel.setLayout(new BoxLayout(searchTripsPanel, BoxLayout.X_AXIS));
-		searchTripsPanel.add(searchTripsButton);
-		searchTripsPanel.add(button2);
-		searchTripsPanel.add(button3);
+		searchTripsPanel.add(searchPlaneTrips);
+		searchTripsPanel.add(searchTrainTrips);
+		searchTripsPanel.add(searchCruiseTrips);
 
 
 		JButton createPlaneTrip = new JButton("Plane");
@@ -39,8 +37,21 @@ public class AdminHomePanel extends JPanel {
 		createTripPanel.add(createCruiseTrip);
 
 		// Set button listeners
-		searchTripsButton.addActionListener(e -> {
-			this.context.changeCard("searchTrips");
+		searchPlaneTrips.addActionListener(e -> {
+			this.context.goToSearchTrips(TripType.PLANE);
+		});
+
+		searchTrainTrips.addActionListener(e -> {
+			this.context.goToSearchTrips(TripType.TRAIN);
+		});
+
+		searchCruiseTrips.addActionListener(e -> {
+			this.context.goToSearchTrips(TripType.CRUISE);
+		});
+
+		createPlaneTrip.addActionListener(e -> {
+			AdminCommandDeleteTrip command = new AdminCommandDeleteTrip(this.context, TripType.PLANE, "name");
+			this.context.executeCommand(command);
 		});
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

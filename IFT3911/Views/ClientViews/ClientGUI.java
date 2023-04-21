@@ -1,6 +1,6 @@
 package Views.ClientViews;
 
-import Views.TripEventListener;
+import DAOs.TripObserver.TripEventListener;
 
 public abstract class ClientGUI implements TripEventListener {
 }

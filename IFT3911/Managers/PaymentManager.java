@@ -1,4 +1,7 @@
-package Managerss;
+package Managers;
+
+import Models.Payment.Payment;
+import Models.Payment.PaymentInfo;
 
 public class PaymentManager {
 
@@ -7,8 +10,7 @@ public class PaymentManager {
 	 * @param paymentInfo
 	 */
 	public Payment makePayment(PaymentInfo paymentInfo) {
-		// TODO - implement PaymentManager.makePayment
-		throw new UnsupportedOperationException();
+		return new Payment(paymentInfo);
 	}
 
 }

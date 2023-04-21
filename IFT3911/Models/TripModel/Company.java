@@ -9,11 +9,20 @@ public abstract class Company {
 		this.prefix = prefix;
 	}
 
+	public String getId() {
+		return this.name;
+	}
+
 	public String getName() {
 		return this.name;
 	}
 
 	public String getPrefix() {
 		return this.prefix;
+	}
+
+	@Override
+	public String toString(){
+		return this.name;
 	}
 }

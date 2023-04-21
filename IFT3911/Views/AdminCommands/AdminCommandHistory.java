@@ -1,20 +1,24 @@
 package Views.AdminCommands;
+
+import java.util.Stack;
+
 public class AdminCommandHistory {
 
-	private AdminCommand[] history;
+	private Stack<AdminCommand<?>> history;
 
-	/**
-	 * 
-	 * @param c
-	 */
-	public void push(AdminCommand c) {
-		// TODO - implement AdminCommandHistory.push
-		throw new UnsupportedOperationException();
+	public AdminCommandHistory() {
+		this.history = new Stack<>();
 	}
 
-	public AdminCommand pop() {
-		// TODO - implement AdminCommandHistory.pop
-		throw new UnsupportedOperationException();
+	public void push(AdminCommand<?> c) {
+		this.history.push(c);
+	}
+
+	public AdminCommand<?> pop() {
+		if (this.history.isEmpty()) {
+			return null;
+		}
+		return this.history.pop();
 	}
 
 }

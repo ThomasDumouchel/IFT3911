@@ -1,18 +1,18 @@
 package DAOs.Terminal;
 
-import Models.PlaneTripModel.Airport;
+import DAOs.Trip.TripType;
 import Models.TripModel.Terminal;
 
 public class DBTerminal {
-    private TerminalType type;
+    private TripType type;
     private Terminal terminal;
 
-    public DBTerminal(TerminalType type, Terminal terminal) {
+    public DBTerminal(TripType type, Terminal terminal) {
         this.type = type;
         this.terminal = terminal;
-    }
+    }    
 
-    public TerminalType getType() {
+    public TripType getType() {
         return type;
     }
 
@@ -20,7 +20,7 @@ public class DBTerminal {
         return terminal;
     }
 
-    public void setTerminal(Airport updated_airport) {
-        this.terminal = updated_airport;
+    public void setTerminal(Terminal updated_terminal) {
+        this.terminal = updated_terminal;
     }
 }

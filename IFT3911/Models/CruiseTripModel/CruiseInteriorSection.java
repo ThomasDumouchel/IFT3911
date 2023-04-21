@@ -1,10 +1,11 @@
 package Models.CruiseTripModel;
 public class CruiseInteriorSection extends CruiseSection {
 
-    public CruiseInteriorSection() {
+    public CruiseInteriorSection(int nbOfCabins) {
         super(
             CruiseSectionType.INTERIOR, 
-            0.5
+            0.5,
+            nbOfCabins
         );
     }
 }

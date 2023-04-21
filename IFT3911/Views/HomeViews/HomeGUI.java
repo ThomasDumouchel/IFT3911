@@ -59,7 +59,7 @@ public class HomeGUI extends JFrame {
         add(panel);
 
         // Set the default close operation for the frame
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        // setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     public void run() {

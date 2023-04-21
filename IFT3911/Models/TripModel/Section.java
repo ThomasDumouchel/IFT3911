@@ -3,7 +3,7 @@ package Models.TripModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Section<R extends Reservable<O>, O extends ReservationOption, T extends Enum<T>> {
+public abstract class Section<R extends Reservable<O>, O extends ReservationOption, T extends ISectionType> {
 
 	private final T sectionType;
 	private Double fullPriceMultiplier;
@@ -44,5 +44,4 @@ public abstract class Section<R extends Reservable<O>, O extends ReservationOpti
 		// No reservable was found
 		return null;
 	}
-
 }
