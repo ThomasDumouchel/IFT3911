@@ -1,6 +1,8 @@
 package Models.TrainTripModel;
 
-public enum TrainSectionType {
+import Models.TripModel.ISectionType;
+
+public enum TrainSectionType implements ISectionType {
     FIRST("P"), 
     ECONOMY("E");
 

@@ -19,6 +19,10 @@ public class DBTrip {
         this.travels = trip.getTravels();
         this.transport = trip.getTransport();
     }
+    
+    public String getId() {
+        return this.tripId;
+    }
 
     public TripType getType() {
         return this.type;

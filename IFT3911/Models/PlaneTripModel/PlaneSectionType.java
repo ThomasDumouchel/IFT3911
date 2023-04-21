@@ -1,6 +1,8 @@
 package Models.PlaneTripModel;
 
-public enum PlaneSectionType {
+import Models.TripModel.ISectionType;
+
+public enum PlaneSectionType implements ISectionType {
 	ECONOMY("E"),
 	ECONOMY_PREMIUM("P"),
 	BUSINESS("B"), 

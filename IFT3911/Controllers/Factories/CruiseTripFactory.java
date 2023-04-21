@@ -2,11 +2,13 @@ package Controllers.Factories;
 
 import Controllers.CreateSectionArgs;
 import Models.CruiseTripModel.CruiseLine;
+import Models.CruiseTripModel.CruiseSectionType;
 import Models.CruiseTripModel.CruiseTrip;
 import Models.CruiseTripModel.Port;
 
 
 import Models.TripModel.Company;
+import Models.TripModel.ISectionType;
 import Models.TripModel.Section;
 import Models.TripModel.Terminal;
 import Models.TripModel.Trip;
@@ -33,7 +35,7 @@ public class CruiseTripFactory implements ITripFactory {
     }
 
     @Override
-    public Section createSection(CreateSectionArgs args) {
+    public Section createSection(ISectionType sectionType, CreateSectionArgs args) {
         CreateCruiseSectionArgs planeSectionArgs = (CreateCruiseSectionArgs)args;
         throw new UnsupportedOperationException("Unimplemented method 'CreateSection'");
     }

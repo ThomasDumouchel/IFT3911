@@ -3,8 +3,12 @@ package Controllers.Factories;
 import Controllers.CreateSectionArgs;
 import Models.PlaneTripModel.Airline;
 import Models.PlaneTripModel.Airport;
+import Models.PlaneTripModel.PlaneEconomyClass;
+import Models.PlaneTripModel.PlaneSection;
+import Models.PlaneTripModel.PlaneSectionType;
 import Models.PlaneTripModel.PlaneTrip;
 import Models.TripModel.Company;
+import Models.TripModel.ISectionType;
 import Models.TripModel.Section;
 import Models.TripModel.Terminal;
 import Models.TripModel.Trip;
@@ -31,9 +35,16 @@ public class PlaneTripFactory implements ITripFactory {
     }
 
     @Override
-    public Section createSection(CreateSectionArgs args) {
+    public Section createSection(ISectionType sectionType, CreateSectionArgs args) {
         CreatePlaneSectionArgs planeSectionArgs = (CreatePlaneSectionArgs)args;
-        throw new UnsupportedOperationException("Unimplemented method 'CreateSection'");
+        PlaneSectionType planeSectionType = (PlaneSectionType)sectionType;
+        switch (planeSectionType) {
+            case ECONOMY:
+                return new PlaneEconomyClass();
+
+            default:
+                throw new UnsupportedOperationException("Section type not supported");
+        }
     }
 
     @Override

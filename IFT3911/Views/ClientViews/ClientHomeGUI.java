@@ -23,7 +23,7 @@ public class ClientHomeGUI extends ClientGUI {
 	}
 
 	@Override
-	public void update(String objectId) {
+	public void update(Object object) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'update'");
 	}

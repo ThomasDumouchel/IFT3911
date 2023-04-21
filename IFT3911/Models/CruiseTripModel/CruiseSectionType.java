@@ -1,6 +1,8 @@
 package Models.CruiseTripModel;
 
-public enum CruiseSectionType {
+import Models.TripModel.ISectionType;
+
+public enum CruiseSectionType implements ISectionType {
     INTERIOR("I"), 
     OCEAN_VIEW("O"), 
     SUITE("S"), 

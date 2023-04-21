@@ -1,15 +1,20 @@
 package Controllers;
 
+import java.sql.Date;
 import java.util.List;
 
 import DAOs.Trip.TripType;
 import Managers.TripManager;
+import Models.Payment.PaymentInfo;
+import Models.TripModel.Client;
 import Models.TripModel.Company;
+import Models.TripModel.Reservable;
+import Models.TripModel.ReservationOption;
 import Models.TripModel.Section;
 import Models.TripModel.Terminal;
 import Models.TripModel.Trip;
 
-public class VacationSystem implements AdminController {
+public class VacationSystem implements AdminController, ClientController {
 
 	private TripManager tripManager;
 
@@ -108,96 +113,23 @@ public class VacationSystem implements AdminController {
 		return this.tripManager.getCompanies(tripType);
 	}
 
-	// @Override
-	// public Airport CreateAirport(String name, String city) {
-	// 	return planeTripManager.createAirport(name, city);
-	// }
+	@Override
+	public Reservable Confirm(String reservationId, PaymentInfo paymentInfo, Client client) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'Confirm'");
+	}
 
-	// @Override
-	// public Airport UpdateAirport(String name, Airport updated_airport) {
-	// 	return planeTripManager.UpdateAirport(name, updated_airport);
-	// }
+	@Override
+	public Reservable ReserveTrip(TripType tripType, String tripId, Enum<?> sectionType, ReservationOption option) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'ReserveTrip'");
+	}
 
-	// @Override
-	// public Airport DeleteAirport(String name) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'DeleteAirport'");
-	// }
+	@Override
+	public List<Trip> GetTrips(TripType tripType, String originId, String destinationId, Date date,
+			Enum<?> sectionType) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'GetTrips'");
+	}
 
-	// @Override
-	// public Airline CreateAirline(String name, String prefix) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'CreateAirline'");
-	// }
-
-	// @Override
-	// public Airline UpdateAirline(String id, Airline updated_airline) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'UpdateAirline'");
-	// }
-
-	// @Override
-	// public Airline DeleteAirline(String id) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'DeleteAirline'");
-	// }
-
-	// @Override
-	// public PlaneTrip CreatePlaneTrip(Airline company) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'CreatePlaneTrip'");
-	// }
-
-	// @Override
-	// public PlaneTrip UpdatePlaneTrip(String id, PlaneTrip updatedPlaneTrip) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'UpdatePlaneTrip'");
-	// }
-
-	// @Override
-	// public PlaneTrip DeletePlaneTrip(String id) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'DeletePlaneTrip'");
-	// }
-
-	// @Override
-	// public PlaneSection CreatePlaneSection(Integer rowCount, PlaneSectionType sectionType,
-	// 		PlaneSectionLayoutType layout) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'CreatePlaneSection'");
-	// }
-
-	// @Override
-	// public PlaneSection UpdatePlaneSection(String id, PlaneSection updatedPlaneSection) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'UpdatePlaneSection'");
-	// }
-
-	// @Override
-	// public PlaneSection DeletePlaneSection(String id) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'DeletePlaneSection'");
-	// }
-
-
-	// @Override
-	// public List<PlaneTrip> GetPlaneTrips(String origin_id, String destination_id) {
-	// 	TODO Auto-generated method stub
-	// 	throw new UnsupportedOperationException("Unimplemented method 'GetPlaneTrips'");
-	// }
-
-	// @Override
-	// public List<PlaneTrip> GetPlaneTrips(String companyName) {
-	// 	return planeTripManager.getPlaneTrips(companyName);
-	// }
-
-	// @Override
-	// public List<Airport> GetAirports() {
-	// 	return planeTripManager.getAirports();
-	// }
-
-	// @Override
-	// public List<Airline> GetAirlines() {
-	// 	return planeTripManager.getAirlines();
-	// }
 }
