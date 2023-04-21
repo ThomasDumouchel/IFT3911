@@ -68,8 +68,8 @@ public abstract class Trip<T extends Transport, X extends Terminal> {
 		this.transport = t;
 	}
 
-    public void setTravels(List<Travel<X>> travels) {
-		this.travels = travels;
+    public void setTravel(Travel<X> travel) {
+		this.travels.add(travel);
     }
 
 }

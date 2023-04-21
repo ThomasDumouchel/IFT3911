@@ -1,3 +1,6 @@
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import Controllers.VacationSystem;
 import DAOs.Company.CompanyDAO;
 import DAOs.Terminal.TerminalDAO;
@@ -19,6 +22,7 @@ import Models.TrainTripModel.TrainStation;
 import Models.TripModel.Company;
 import Models.TripModel.Terminal;
 import Models.TripModel.Travel;
+import Models.TripModel.Trip;
 import Views.HomeViews.HomeGUI;
 
 public class App {
@@ -81,10 +85,56 @@ public class App {
          *  4. Update the trip
          */
         var trip = vacationSystem.CreateTrip(TripType.PLANE, "Air Canada", 1000.0);
+        Travel<Airport> travel = new Travel<>(
+            new Airport("ABC", "Aeroport 1", "Buenos Aires"),
+            new Airport("DEF", "Aeroport 2", "Montreal"), 
+            new Date(202012100000L),
+            new Date(202012200000L)
+        );
+        trip.setTravel(travel);
         var planeSectionArgs1 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.MEDIUM);
         var planeSection = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.BUSINESS, planeSectionArgs1);
+        var planeSectionArgs2 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.MEDIUM);
+        var planeSection2 = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.ECONOMY, planeSectionArgs2);
+        trip.getTransport().addSection(planeSection);
+        trip.getTransport().addSection(planeSection2);
+        vacationSystem.UpdateTrip(TripType.PLANE, trip.getId(), trip);
 
- 
+        var trip2 = vacationSystem.CreateTrip(TripType.PLANE, "Delta Air Lines", 900.0);
+        Travel<Airport> travel2 = new Travel<>(
+            new Airport("ABC", "Aeroport 1", "Buenos Aires"),
+            new Airport("DEF", "Aeroport 2", "Montreal"), 
+            new Date(202012400000L),
+            new Date(202012500000L)
+        );
+        ((Trip) trip2).setTravel(travel2);
+        var planeSectionArgs3 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.TIGHT);
+        var planeSection3 = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.FIRST, planeSectionArgs3);
+        var planeSectionArgs4 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.MEDIUM);
+        var planeSection4 = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.BUSINESS, planeSectionArgs4);
+        var planeSectionArgs5 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.LARGE);
+        var planeSection5 = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.ECONOMY, planeSectionArgs5);
+        ((Trip) trip2).getTransport().addSection(planeSection3);
+        ((Trip) trip2).getTransport().addSection(planeSection4);
+        ((Trip) trip2).getTransport().addSection(planeSection5);
+
+        var trip3 = vacationSystem.CreateTrip(TripType.PLANE, "United Airlines", 800.0);
+        Travel<Airport> travel3 = new Travel<>(
+            new Airport("ABC", "Aeroport 1", "Buenos Aires"),
+            new Airport("DEF", "Aeroport 2", "Montreal"), 
+            new Date(202012600000L),
+            new Date(202012700000L)
+        );
+        ((Trip) trip3).setTravel(travel3);
+        var planeSectionArgs6 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.TIGHT);
+        var planeSection6 = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.FIRST, planeSectionArgs6);
+        var planeSectionArgs7 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.MEDIUM);
+        var planeSection7 = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.BUSINESS, planeSectionArgs7);
+        var planeSectionArgs8 = new CreatePlaneSectionArgs(10, PlaneSectionLayoutType.LARGE);
+        var planeSection8 = vacationSystem.CreateSection(TripType.PLANE, PlaneSectionType.ECONOMY, planeSectionArgs8);
+        ((Trip) trip3).getTransport().addSection(planeSection6);
+        ((Trip) trip3).getTransport().addSection(planeSection7);
+        ((Trip) trip3).getTransport().addSection(planeSection8); 
 
 
         // Create Views

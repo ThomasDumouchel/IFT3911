@@ -15,6 +15,7 @@ import Models.TripModel.Reservable;
 import Models.TripModel.ReservationOption;
 import Models.TripModel.Section;
 import Models.TripModel.Terminal;
+import Models.TripModel.Travel;
 import Models.TripModel.Trip;
 
 public class VacationSystem implements AdminController, ClientController {

@@ -18,7 +18,7 @@ public class AdminCommandCreateTrip extends AdminCommand<Trip> {
 
     @Override
     public boolean execute() {
-        Trip trip = getAdminGUI().getController().CreateTrip(getTripType(), company, fullPrice);
+        Trip trip = getAdminGUI().getController().CreateTrip(getTripType(), company.getName(), fullPrice);
         saveBackup(trip);
         return true;
     }

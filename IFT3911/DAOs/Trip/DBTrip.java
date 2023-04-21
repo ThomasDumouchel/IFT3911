@@ -20,6 +20,7 @@ public class DBTrip {
         this.fullPrice = trip.getFullPrice();
         this.travels = trip.getTravels();
         this.transport = trip.getTransport();
+        this.type = type;
     }
     
     public String getId() {

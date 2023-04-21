@@ -21,6 +21,7 @@ import Models.TripModel.Reservable;
 import Models.TripModel.ReservationOption;
 import Models.TripModel.Section;
 import Models.TripModel.Terminal;
+import Models.TripModel.Travel;
 import Models.TripModel.Trip;
 
 public class TripManager {
@@ -34,6 +35,7 @@ public class TripManager {
         selectTripFactoryStrategy = new SelectTripFactoryStrategy();
         this.terminalDAO = terminalDAO;
         this.companyDAO = companyDAO;
+        this.tripDAO = tripDAO;
     }
 
     public Terminal createTerminal(TripType tripType, String terminal_code, String name, String city) {
@@ -144,7 +146,9 @@ public class TripManager {
     public Trip ToAppModel(DBTrip dbTrip) {
         Trip trip = createTrip(dbTrip.getType(), dbTrip.getCompanyId(), dbTrip.getFullPrice());
         trip.setTranport(dbTrip.getTransport());
-        trip.setTravels(dbTrip.getTravels());
+        for(Travel travel : dbTrip.getTravels()) {
+            trip.setTravel(travel);
+        }
         return trip;
     }
 

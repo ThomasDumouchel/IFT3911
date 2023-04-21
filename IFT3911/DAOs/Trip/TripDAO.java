@@ -33,7 +33,7 @@ public class TripDAO {
     }
 
     public void addTrip(TripType tripType, Trip trip) {
-        trips.add(ToDBModel(trip));
+        trips.add(ToDBModel(tripType, trip));
     }
 
     public DBTrip deleteTrip(TripType tripType, String id) {
@@ -48,21 +48,13 @@ public class TripDAO {
 
     public DBTrip updateTrip(TripType tripType, String id, Trip updated_trip) {
         var deleted_trip = deleteTrip(tripType, id);
-        trips.add(ToDBModel(updated_trip));
+        trips.add(ToDBModel(tripType, updated_trip));
         tripEventManager.notify(TripEventType.TRIP, updated_trip);
         return deleted_trip;
     }
 
-    public static DBTrip ToDBModel(Trip company) {
-        TripType type = null;
-        if (company instanceof PlaneTrip) {
-            type = TripType.PLANE;
-        } else if (company instanceof TrainTrip) {
-            type = TripType.TRAIN;
-        } else if (company instanceof CruiseTrip) {
-            type = TripType.CRUISE;
-        }
-        return new DBTrip(type, company);
+    public static DBTrip ToDBModel(TripType tripType, Trip company) {
+        return new DBTrip(tripType, company);
     }
 
     public DBTrip getTrip(TripType tripType, String tripId) {

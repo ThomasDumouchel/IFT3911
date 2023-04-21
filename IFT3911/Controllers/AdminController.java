@@ -8,6 +8,7 @@ import Models.TripModel.Company;
 import Models.TripModel.ISectionType;
 import Models.TripModel.Section;
 import Models.TripModel.Terminal;
+import Models.TripModel.Travel;
 import Models.TripModel.Trip;
 
 public interface AdminController {
@@ -129,4 +130,5 @@ public interface AdminController {
 	List<Terminal> GetTerminals(TripType tripType);
 
 	List<Company> GetCompanies(TripType tripType);
+
 }
